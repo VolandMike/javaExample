@@ -46,15 +46,14 @@ public class FirstSteps {
     Возвращает true, если  x равен y, иначе false.
      */
     public boolean isEqual (int x, int y){
-        if (x == y) return true;
-        return false;
+        return x == y;
     }
     /*
     Возвращает true, если  x больше y, иначе false.
      */
     public boolean isGreater (int x, int y){
 
-        return x>y ? true:false;
+        return x > y;
 
     }
     /*
@@ -67,9 +66,7 @@ public class FirstSteps {
      */
     public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y)
     {
-        if(xLeft <=x && x<=xRight &&yTop <=y && y<=yBottom)
-            return true;
-        return false;
+        return xLeft <= x && x <= xRight && yTop <= y && y <= yBottom;
     }
     /*
     Возвращает сумму чисел, заданных одномерным массивом array. Для пустого одномерного массива возвращает 0.
@@ -77,17 +74,11 @@ public class FirstSteps {
     public int sum(int[] array){
         if(array.length == 0)return 0;
 
-        int i = array.length;
-
         int x = 0;
-        while(i>0)
-        {
-            x+=array[i-1];
-            i--;
+
+        for(int i: array){
+            x+= i;
         }
-
-
-            
         return x;
     }
     /*
@@ -95,14 +86,17 @@ public class FirstSteps {
      */
     public int mul(int[] array){
         if(array.length == 0)return 0;
-
+        int sum = 1;
         int x = 1;
-        int i = array.length;
-        while (i>0){
-            x*=array[i-1];
-            i--;
-        }
-        return x;
+
+            //int i = array.length;
+            for (int elem : array) {
+                sum*= elem;
+
+            }
+
+
+        return sum;
 
     }
 
@@ -128,16 +122,16 @@ public class FirstSteps {
  Для пустого одномерного массива возвращает Integer.MIN_VALUE.
      */
     public int max(int[] array){
-        if(array.length == 0)return Integer.MIN_VALUE;
-        for(int i = array.length - 1 ; i>0 ; i--){
-            for(int j=0 ; j < i ; j++){
-                if(array[j] > array[j+1]){
+        if(array.length == 0)
+            return Integer.MIN_VALUE;
+        for(int i = array.length - 1 ; i>0 ; i--)
+            for (int j = 0; j < i; j++) {
+                if (array[j] > array[j + 1]) {
                     int t = array[j];
-                    array[j]=array[j+1];
-                    array[j+1]=t;
+                    array[j] = array[j + 1];
+                    array[j + 1] = t;
                 }
             }
-        }
         return array[array.length-1];
 
     }
@@ -145,11 +139,10 @@ public class FirstSteps {
 Возвращает среднее значение для чисел, заданных одномерным массивом array. Для пустого одномерного массива возвращает 0.
      */
     public double average(int[] array){
-        double avg = 0.;
 
         if(array.length == 0)return 0;
 
-        avg=sum(array);
+        double avg=sum(array);
 
         avg = avg/array.length;
 
@@ -161,17 +154,17 @@ public class FirstSteps {
      */
     public boolean isSortedDescendant(int[] array){
         if(array.length == 0)return true;
-        boolean ok = true;
+
         int x = array[0];
         for(int i = 1 ; i < array.length; i++){
             if(x<array[i]) {return false;}
             else if(x == array[i]){return false;}
             if(x>array[i]){
-                ok = true;
+
                 x=array[i];
             }
         }
-        return ok;
+        return true;
     }
     /*
     Возводит все элементы одномерного массива array в куб.
@@ -179,13 +172,14 @@ public class FirstSteps {
     public void cube(int[] array) {
         int cube;
         int tmp;
-        int i = array.length;
-        while(i>0){
-            tmp = array[i-1];
+
+        for(int i = 0; i < array.length; i++){
+            tmp = array[i];
             cube = tmp*tmp*tmp;
-            array[i-1] = cube;
-            i--;
+            array[i]=cube;
+
         }
+
     }
     /*
     Возвращает true, если в одномерном массиве array имеется элемент, равный value, иначе false.
@@ -201,7 +195,7 @@ public class FirstSteps {
       Переворачивает одномерный массив array, то есть меняет местами 0-й и последний, 1-й и предпоследний и т.д. элементы.
        */
     public void reverse(int[] array) {
-        if(array.length ==1||array.length==0){}
+
 
         int tmp;
         for (int i = 0; i < array.length / 2; i++) {
@@ -227,10 +221,10 @@ public class FirstSteps {
      */
     public int sum(int[][] matrix){
         int sum = 0;
-        for(int i = 0; i<matrix.length;i++)
-            for(int j=0;j<matrix.length;j++)
-            {
-                sum+=matrix[i][j];
+
+        for (int[] aMatrix : matrix)
+            for (int j = 0; j < matrix.length; j++) {
+                sum += aMatrix[j];
             }
 
         return sum;
@@ -246,9 +240,9 @@ public class FirstSteps {
 
         try {
 
-            for (int i = 0; i < matrix.length; i++)
+            for (int[] aMatrix : matrix)
                 for (int j = 0; j < matrix.length; j++) {
-                    if (matrix[i][j] >= sum) sum = matrix[i][j];
+                    if (aMatrix[j] >= sum) sum = aMatrix[j];
                 }
             return sum;
         }catch (ArrayIndexOutOfBoundsException e){
@@ -272,12 +266,7 @@ public class FirstSteps {
                     if (i == j) temp.add(matrix[i][j]);
                 }
 
-            Collections.sort(temp, new Comparator<Integer>() {
-                @Override
-                public int compare(Integer o1, Integer o2) {
-                    return o1 - o2;
-                }
-            });
+            temp.sort((o1, o2) -> o1 - o2);
             int res =temp.get(temp.size()-1);
             System.out.println("");
             return res;
@@ -296,14 +285,13 @@ public class FirstSteps {
     public boolean isSortedDescendant(int[][] matrix){
         try {
             int prevvalue;
-            for(int i = 0; i < matrix.length; i++) {
-                prevvalue = matrix[i][0];
-                for (int j = 1; j < matrix[i].length; j++) {
-                    if (matrix[i][j] >= prevvalue){
+            for (int[] aMatrix : matrix) {
+                prevvalue = aMatrix[0];
+                for (int j = 1; j < aMatrix.length; j++) {
+                    if (aMatrix[j] >= prevvalue) {
                         return false;
-                    }
-                    else {
-                        prevvalue = matrix[i][j];
+                    } else {
+                        prevvalue = aMatrix[j];
                     }
                 }
             }
