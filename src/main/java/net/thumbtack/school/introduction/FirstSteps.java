@@ -77,9 +77,17 @@ public class FirstSteps {
     public int sum(int[] array){
         if(array.length == 0)return 0;
 
+        int i = array.length;
+
         int x = 0;
-        for(int i = 0 ; i <array.length; i++)
-            x+=array[i];
+        while(i>0)
+        {
+            x+=array[i-1];
+            i--;
+        }
+
+
+            
         return x;
     }
     /*
@@ -89,8 +97,11 @@ public class FirstSteps {
         if(array.length == 0)return 0;
 
         int x = 1;
-        for(int i = 0 ; i <array.length; i++)
-            x*=array[i];
+        int i = array.length;
+        while (i>0){
+            x*=array[i-1];
+            i--;
+        }
         return x;
 
     }
@@ -135,11 +146,11 @@ public class FirstSteps {
      */
     public double average(int[] array){
         double avg = 0.;
+
         if(array.length == 0)return 0;
 
-        for(int i = 0 ; i < array.length; i++){
-            avg+=array[i];
-        }
+        avg=sum(array);
+
         avg = avg/array.length;
 
         return avg;
@@ -168,17 +179,19 @@ public class FirstSteps {
     public void cube(int[] array) {
         int cube;
         int tmp;
-        for(int i = 0; i < array.length; i++){
-            tmp = array[i];
+        int i = array.length;
+        while(i>0){
+            tmp = array[i-1];
             cube = tmp*tmp*tmp;
-            array[i] = cube;
+            array[i-1] = cube;
+            i--;
         }
     }
     /*
     Возвращает true, если в одномерном массиве array имеется элемент, равный value, иначе false.
      */
     public boolean find(int[]array, int value){
-        for(int i = 0; i < array.length;i++)
+        for (int i : array)
         {
             if(array[i]==value) return true;
         }
@@ -232,6 +245,7 @@ public class FirstSteps {
 
 
         try {
+
             for (int i = 0; i < matrix.length; i++)
                 for (int j = 0; j < matrix.length; j++) {
                     if (matrix[i][j] >= sum) sum = matrix[i][j];
@@ -248,15 +262,16 @@ public class FirstSteps {
     public int diagonalMax(int[][] matrix){
 
         try {
-            int sum = Integer.MIN_VALUE;
+            //int sum = Integer.MIN_VALUE;
 
-            ArrayList<Integer> temp = new ArrayList<Integer>();
+            ArrayList<Integer> temp = new ArrayList<>();
 
 
             for (int i = 0; i < matrix.length; i++)
                 for (int j = 0; j < matrix.length; j++) {
                     if (i == j) temp.add(matrix[i][j]);
                 }
+
             Collections.sort(temp, new Comparator<Integer>() {
                 @Override
                 public int compare(Integer o1, Integer o2) {
