@@ -106,7 +106,14 @@ public class FirstSteps {
      */
     public int min(int[] array){
         if(array.length == 0)return Integer.MAX_VALUE;
-        for(int i = array.length - 1 ; i>0 ; i--){
+
+        int res = array[0];
+        for(int i : array)
+        {
+            if(res<i)
+                res=i;
+        }
+        /*for(int i = array.length - 1 ; i>0 ; i--){
             for(int j=0 ; j < i ; j++){
                 if(array[j] > array[j+1]){
                     int t = array[j];
@@ -114,8 +121,8 @@ public class FirstSteps {
                     array[j+1]=t;
                 }
             }
-        }
-        return array[0];
+        }*/
+        return res;
     }
     /*
 Возвращает максимальное из чисел, заданных одномерным массивом array.
@@ -124,15 +131,21 @@ public class FirstSteps {
     public int max(int[] array){
         if(array.length == 0)
             return Integer.MIN_VALUE;
-        for(int i = array.length - 1 ; i>0 ; i--)
+      /*  for(int i = array.length - 1 ; i>0 ; i--)
             for (int j = 0; j < i; j++) {
                 if (array[j] > array[j + 1]) {
                     int t = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = t;
                 }
-            }
-        return array[array.length-1];
+            }*/
+        int res = array[0];
+        for(int i : array)
+        {
+            if(res>i)
+                res=i;
+        }
+        return res;
 
     }
     /*
