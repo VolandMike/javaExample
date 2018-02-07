@@ -108,10 +108,12 @@ public class FirstSteps {
         if(array.length == 0)return Integer.MAX_VALUE;
 
         int res = array[0];
+        int buff;
         for(int i : array)
         {
-            if(res<i)
-                res=i;
+            buff = i;
+            if(buff<res)
+                res=buff;
         }
         /*for(int i = array.length - 1 ; i>0 ; i--){
             for(int j=0 ; j < i ; j++){
@@ -140,10 +142,12 @@ public class FirstSteps {
                 }
             }*/
         int res = array[0];
+        int buff;
         for(int i : array)
         {
-            if(res>i)
-                res=i;
+            buff = i;
+            if(buff>res)
+                res=buff;
         }
         return res;
 
