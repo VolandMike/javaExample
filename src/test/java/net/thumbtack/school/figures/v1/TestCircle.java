@@ -100,7 +100,7 @@ public class TestCircle {
         assertNotEquals(circle1, circle3);
         assertNotEquals(circle1, circle4);
     }
-/*
+
 
     @Test
     @SuppressWarnings("unused")
@@ -110,7 +110,7 @@ public class TestCircle {
         Circle circle3 = CircleFactory.createCircle(new Point2D(10, 20), 1);
         assertEquals(3, CircleFactory.getCircleCount());
     }
-*/
+
 
 }
 
