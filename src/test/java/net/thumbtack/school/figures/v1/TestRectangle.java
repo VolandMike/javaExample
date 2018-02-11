@@ -102,7 +102,7 @@ public class TestRectangle {
         assertFalse(rect.isInside(new Point2D(-10, 20)));
         assertFalse(rect.isInside(new Point2D(10, -20)));
     }
-/*
+
 
     @Test
     public void testIsIntersectsRectangle() {
@@ -121,7 +121,7 @@ public class TestRectangle {
         assertFalse(rect.isIntersects(new Rectangle(10, 120, 30, 140)));
         assertFalse(rect.isIntersects(new Rectangle(10, -40, 30, -20)));
     }
-*/
+
 
     @Test
     public void testIsRectangleInsideRectangle() {

@@ -75,9 +75,7 @@ public class Rectangle {
 
     //Возвращает площадь прямоугольника.
     public double getArea(){
-
-
-    return getWidth()*getLength();
+        return getWidth()*getLength();
     }
 
     //    Возвращает периметр прямоугольника.
@@ -86,33 +84,26 @@ public class Rectangle {
     //Определяет, лежит ли точка (x, y) внутри Rectangle. Если точка лежит на стороне, считается, что она лежит внутри.
     public boolean isInside(int x, int y){
 
-        if(x<getTopLeft().getX()||x>getBottomRight().getX()||y<getTopLeft().getY()||y>getBottomRight().getY())
-            return false;
-
-return true;
+        return x >= getTopLeft().getX() && x <= getBottomRight().getX() && y >= getTopLeft().getY() && y <= getBottomRight().getY();
     }
 
     //Определяет, лежит ли точка point внутри Rectangle. Если точка лежит на стороне, считается, что она лежит внутри.
     public boolean isInside(Point2D point){
-        if(point.getX()<getTopLeft().getX()||point.getX()>getBottomRight().getX()||point.getY()<getTopLeft().getY()||point.getY()>getBottomRight().getY())
-            return false;
 
-        return true;}
+        return isInside(point.getX(),point.getY());
+    }
 
     // Определяет, пересекается  ли Rectangle с другим Rectangle. Считается, что прямоугольники пересекаются,
     // если у них есть хоть одна общая точка.
-  /*  public boolean isIntersects(Rectangle rectangle){
-        if((getTopLeft().getX()<=rectangle.getTopLeft().getX()||rectangle.getBottomRight().getX()<=getBottomRight().getX())
-                ||((getTopLeft().getY()<=rectangle.getTopLeft().getY()||rectangle.getBottomRight().getY()<=getBottomRight().getY())))
-                return true;
-        return false;}
-*/
+  public boolean isIntersects(Rectangle rectangle){
+
+      return rectangle.getTopLeft().getX() <= getBottomRight().getX() && rectangle.getBottomRight().getX() >= getTopLeft().getX() &&
+              rectangle.getTopLeft().getY() <= getBottomRight().getY() && rectangle.getBottomRight().getY() >= getTopLeft().getY();
+  }
     //   Определяет, лежит ли rectangle целиком внутри текущего Rectangle.
     public boolean isInside(Rectangle rectangle){
-        if(rectangle.getBottomRight().getX()<=getBottomRight().getX()&&rectangle.getBottomRight().getY()<=getBottomRight().getY()
-        &&rectangle.getTopLeft().getX()>=getTopLeft().getX()&&rectangle.getTopLeft().getY()>=getTopLeft().getY())
-            return true;
-        return false;
+        return rectangle.getBottomRight().getX() <= getBottomRight().getX() && rectangle.getBottomRight().getY() <= getBottomRight().getY()
+                && rectangle.getTopLeft().getX() >= getTopLeft().getX() && rectangle.getTopLeft().getY() >= getTopLeft().getY();
     }
 
     @Override
