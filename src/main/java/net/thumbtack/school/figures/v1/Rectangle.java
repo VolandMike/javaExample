@@ -8,8 +8,7 @@ public class Rectangle {
 
 //    Создает Rectangle по координатам углов - левого верхнего и правого нижнего.
     public Rectangle(Point2D leftTop, Point2D rightBottom) {
-        this.leftTop = leftTop;
-        this.rightBottom = rightBottom;
+       this(leftTop.getX(),leftTop.getY(),rightBottom.getX(),rightBottom.getY());
 
     }
     //Создает Rectangle по координатам углов - левого верхнего и правого нижнего.
@@ -21,14 +20,12 @@ public class Rectangle {
 //Создает Rectangle, левый нижний угол которого находится в начале координат,
 // а  длина (по оси X) и ширина (по оси Y) задаются.
     public Rectangle(int length, int width){
-        this.leftTop = new Point2D(0,-width);
-        this.rightBottom = new Point2D(length,0);
+        this(0,-width,length,0);
     }
 
 //Создает Rectangle с размерами (1,1), левый нижний угол которого находится в начале координат.
     public Rectangle(){
-        this.leftTop = new Point2D(0,-1);
-        this.rightBottom = new Point2D(1,0);
+        this(0,-1,1,0);
     }
 //Возвращает левую верхнюю точку Rectangle.
     public Point2D getTopLeft(){
@@ -79,12 +76,12 @@ public class Rectangle {
     }
 
     //    Возвращает периметр прямоугольника.
-    public double getPerimeter(){return 2*getWidth()+2*getLength();}
+    public double getPerimeter(){return 2*(getWidth()+getLength());}
 
     //Определяет, лежит ли точка (x, y) внутри Rectangle. Если точка лежит на стороне, считается, что она лежит внутри.
     public boolean isInside(int x, int y){
 
-        return x >= getTopLeft().getX() && x <= getBottomRight().getX() && y >= getTopLeft().getY() && y <= getBottomRight().getY();
+        return x >= leftTop.getX() && x <= rightBottom.getX() && y >= leftTop.getY() && y <= rightBottom.getY();
     }
 
     //Определяет, лежит ли точка point внутри Rectangle. Если точка лежит на стороне, считается, что она лежит внутри.
@@ -97,13 +94,13 @@ public class Rectangle {
     // если у них есть хоть одна общая точка.
   public boolean isIntersects(Rectangle rectangle){
 
-      return rectangle.getTopLeft().getX() <= getBottomRight().getX() && rectangle.getBottomRight().getX() >= getTopLeft().getX() &&
-              rectangle.getTopLeft().getY() <= getBottomRight().getY() && rectangle.getBottomRight().getY() >= getTopLeft().getY();
+      return rectangle.getTopLeft().getX() <= rightBottom.getX() && rectangle.getBottomRight().getX() >= leftTop.getX() &&
+              rectangle.getTopLeft().getY() <= rightBottom.getY() && rectangle.getBottomRight().getY() >= leftTop.getY();
   }
     //   Определяет, лежит ли rectangle целиком внутри текущего Rectangle.
     public boolean isInside(Rectangle rectangle){
-        return rectangle.getBottomRight().getX() <= getBottomRight().getX() && rectangle.getBottomRight().getY() <= getBottomRight().getY()
-                && rectangle.getTopLeft().getX() >= getTopLeft().getX() && rectangle.getTopLeft().getY() >= getTopLeft().getY();
+        return rectangle.getBottomRight().getX() <= rightBottom.getX() && rectangle.getBottomRight().getY() <= rightBottom.getY()
+                && rectangle.getTopLeft().getX() >= leftTop.getX() && rectangle.getTopLeft().getY() >= leftTop.getY();
     }
 
     @Override

@@ -9,8 +9,7 @@ public class Circle {
 
     //Создает Circle по координатам центра и значению радиуса.
     public Circle(Point2D center, int raduis){
-        this.center=center;
-        this.raduis = raduis;
+        this(center.getX(),center.getY(),raduis);
     }
 
     //    Создает Circle по координатам центра и значению радиуса.
@@ -20,14 +19,12 @@ public class Circle {
     }
     //Создает Circle с центром в точке (0,0) указанного радиуса.
     public Circle(int radius){
-        this.center = new Point2D(0,0);
-        this.raduis = radius;
+        this(0,0,radius);
     }
 
     //    Создает Circle с центром в точке (0,0) с радиусом 1.
     public Circle(){
-        this.center = new Point2D(0,0);
-        this.raduis = 1;
+        this(0,0,1);
     }
 
     //   Возвращает центр Circle.
@@ -75,8 +72,8 @@ public class Circle {
     // Если точка лежит на окружности, считается, что она лежит внутри.
     public boolean isInside(int x, int y){
 
-        double h = Math.sqrt(x*x+y*y);
-        return h >= getRadius();
+        //(x-x0)^2 + (y-y0)^2 <= R^2
+        return (x - center.getX()) * (x - center.getX()) - (y - center.getY()) * (y - center.getY()) <= getRadius() * getRadius();
 
 
     }

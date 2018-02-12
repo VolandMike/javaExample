@@ -41,8 +41,8 @@ public class Triangle {
     }
     //Возвращает длину стороны 1-2.
     public double getSide12(){
-        int a = getPoint2().getX()-getPoint1().getX();
-        int b = getPoint2().getY()-getPoint1().getY();
+        int a = point2.getX()-point1.getX();
+        int b = point2.getY()-point1.getY();
         return Math.sqrt(a*a+b*b);
     }
 
@@ -64,24 +64,24 @@ public class Triangle {
 
     //Возвращает длину стороны 1-3.
     public double getSide13(){
-        int a = getPoint3().getX()-getPoint1().getX();
-        int c = getPoint3().getY()-getPoint1().getY();
+        int a = point3.getX()-point1.getX();
+        int c = point3.getY()-point1.getY();
         return Math.sqrt(a*a+c*c);
 
     }
 
     //    Возвращает длину стороны 2-3.
     public double getSide23(){
-        int b = getPoint3().getX()-getPoint2().getX();
-        int c = getPoint3().getY()-getPoint2().getY();
+        int b = point3.getX()-point2.getX();
+        int c = point3.getY()-point2.getY();
         return Math.sqrt(b*b+c*c);
     }
 
     //Передвигает Triangle на (dx, dy).
     public void moveRel(int dx, int dy){
-        getPoint1().moveRel(dx,dy);
-        getPoint2().moveRel(dx,dy);
-        getPoint3().moveRel(dx,dy);
+        point1.moveRel(dx,dy);
+        point2.moveRel(dx,dy);
+        point3.moveRel(dx,dy);
     }
     //Возвращает площадь треугольника.
     public double getArea(){
@@ -101,12 +101,12 @@ public class Triangle {
 
         //Переносим треугольник точкой point1 в (0,0)
 
-        int twoX = getPoint2().getX() - getPoint1().getX();
-        int twoY = getPoint2().getY() - getPoint1().getY();
-        int threeX = getPoint3().getX() - getPoint1().getX();
-        int threeY = getPoint3().getY() - getPoint1().getY();
-        int fourX = x - getPoint1().getX();
-        int fourY = y - getPoint1().getY();
+        int twoX = point2.getX() - point1.getX();
+        int twoY = point2.getY() - point1.getY();
+        int threeX = point3.getX() - point1.getX();
+        int threeY = point3.getY() - point1.getY();
+        int fourX = x - point1.getX();
+        int fourY = y - point1.getY();
 
         double m = (fourX * twoY - twoX * fourY) / (threeX * twoY - twoX * threeY);
         double lambda;
