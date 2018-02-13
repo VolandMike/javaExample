@@ -8,13 +8,14 @@ public class Rectangle {
 
 //    Создает Rectangle по координатам углов - левого верхнего и правого нижнего.
     public Rectangle(Point2D leftTop, Point2D rightBottom) {
-       this(leftTop.getX(),leftTop.getY(),rightBottom.getX(),rightBottom.getY());
+        this.leftTop = leftTop;
+        this.rightBottom = rightBottom;
 
     }
     //Создает Rectangle по координатам углов - левого верхнего и правого нижнего.
     public Rectangle(int xLeft, int yTop, int xRight, int yBottom){
-        this.leftTop=new Point2D(xLeft,yTop);
-        this.rightBottom = new Point2D(xRight,yBottom);
+
+        this(new Point2D(xLeft,yTop),new Point2D(xRight,yBottom));
     }
 
 //Создает Rectangle, левый нижний угол которого находится в начале координат,

@@ -9,13 +9,15 @@ public class Circle {
 
     //Создает Circle по координатам центра и значению радиуса.
     public Circle(Point2D center, int raduis){
-        this(center.getX(),center.getY(),raduis);
+
+        this.center = center;
+        this.raduis = raduis;
     }
 
     //    Создает Circle по координатам центра и значению радиуса.
     public Circle(int xCenter, int yCenter, int radius){
-        this.center = new Point2D(xCenter,yCenter);
-        this.raduis = radius;
+
+        this(new Point2D(xCenter,yCenter),radius);
     }
     //Создает Circle с центром в точке (0,0) указанного радиуса.
     public Circle(int radius){
