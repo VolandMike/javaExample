@@ -73,7 +73,7 @@ public class Circle {
     public boolean isInside(int x, int y){
 
         //(x-x0)^2 + (y-y0)^2 <= R^2
-        return (x - center.getX()) * (x - center.getX()) - (y - center.getY()) * (y - center.getY()) <= getRadius() * getRadius();
+        return (x - center.getX()) * (x - center.getX()) + (y - center.getY()) * (y - center.getY()) <= getRadius() * getRadius();
 
 
     }
