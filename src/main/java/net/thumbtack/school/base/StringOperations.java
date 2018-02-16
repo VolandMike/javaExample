@@ -6,6 +6,7 @@ import java.util.StringJoiner;
 public class StringOperations {
     //Возвращает суммарную длину строк, заданных массивом strings.
     public static int getSummaryLength(String[] strings) {
+
         int count = 0;
         for(String i : strings){
             count+=i.length();
@@ -14,31 +15,29 @@ public class StringOperations {
     }
     //Возвращает двухсимвольную строку, состоящую из начального и конечного символов заданной строки.
     public static String getFirstAndLastLetterString(String first) {
+
         StringBuilder sb = new StringBuilder();
         sb.append(first.charAt(0));
         sb.append(first.charAt(first.length()-1));
-
 
          return String.valueOf(sb);
     }
     //Возвращает true, если обе строки в позиции index содержат один и тот же символ, иначе false.
     public static boolean isSameCharAtPosition(String first, String second, int index) {
-
-        return first.charAt(index)==second.charAt(index);
+        return first.charAt(index) == second.charAt(index);
     }
 
 
     //Возвращает true, если в обеих строках первый встреченный символ character находится в одной и той же позиции.
     // Просмотр с трок ведется от начала.
     public static boolean isSameFirstCharPosition(String first, String second, char character) {
-
-                return first.indexOf(character)==second.indexOf(character);
+        return first.indexOf(character) == second.indexOf(character);
     }
 
     //Возвращает true, если в обеих строках первый встреченный символ character находится в одной и той же позиции.
     // Просмотр строк ведется от конца
     public static boolean isSameLastCharPosition(String first, String second, char character ) {
-        return first.lastIndexOf(character,first.length()-1)==second.lastIndexOf(character,second.length()-1);
+        return first.lastIndexOf(character) == second.lastIndexOf(character);
     }
 
     //Возвращает true, если в обеих строках первая встреченная подстрока str начинается в одной и той же позиции.
@@ -51,7 +50,7 @@ public class StringOperations {
     //Возвращает true, если в обеих строках первая встреченная подстрока str начинается в одной и той же позиции.
     // Просмотр строк ведется от конца.
     public static boolean isSameLastStringPosition(String first, String second, String str1) {
-        return first.lastIndexOf(str1)==second.lastIndexOf(str1);
+        return first.lastIndexOf(str1) == second.lastIndexOf(str1);
     }
 
     //Возвращает true, если строки равны
@@ -66,14 +65,13 @@ public class StringOperations {
 
     //Возвращает true, если строка string1 меньше строки string2.
     public static boolean isLess(String string1, String string2) {
-
-        return string1.compareTo(string2)<0;
+        return string1.compareTo(string2) < 0;
     }
 
     //Возвращает true, если строка string1 меньше строки string2
     // без учета регистра (например, строка “abc” меньше строки “ABCd” в этом смысле).
     public static boolean isLessIgnoreCase(String string1, String string2) {
-        return string1.compareToIgnoreCase(string2)<0;
+        return string1.compareToIgnoreCase(string2) < 0;
     }
 
     //Возвращает строку, полученную путем сцепления двух строк.
@@ -83,31 +81,28 @@ public class StringOperations {
 
     //Возвращает true, если обе строки string1 и string2 начинаются с одной и той же подстроки prefix.
     public static boolean isSamePrefix(String string1, String string2, String prefix) {
-        return string1.startsWith(prefix) && string2.startsWith(prefix) && string1.startsWith(prefix) == string2.startsWith(prefix);
+        return string1.startsWith(prefix) && string2.startsWith(prefix);
 
     }
 
     //Возвращает true, если обе строки string1 и string2 заканчиваются одной и той же подстрокой suffix.
     public static boolean isSameSuffix(String string1, String string2, String prefix) {
-        return string1.endsWith(prefix) && string2.endsWith(prefix) && string1.endsWith(prefix) == string2.endsWith(prefix);
+        //if(prefix.equals("")) return false;
+        return string1.endsWith(prefix) && string2.endsWith(prefix) ;
     }
 
     //Возвращает самое длинное общее “начало” двух строк. Если у строк нет общего начала, возвращает пустую строку.
     public static String getCommonPrefix(String first, String second) {
 
-        if(first.length()== 0 || second.length()==0 ) return "";
-
+        if(first.length() == 0 || second.length() == 0 ) return "";
         StringBuilder sb = new StringBuilder("");
-
-        int length=second.length();
-
-        if(isLess(first,second))length=first.length();
+        int length = second.length();
+        if(isLess(first,second)) length=first.length();
 
             for (int i = 0; i < length;i++) {
-               if(!(first.charAt(i)==second.charAt(i))) break;
+               if(!(first.charAt(i) == second.charAt(i))) break;
                    sb.append(first.charAt(i));
             }
-
             return String.valueOf(sb);
     }
 
@@ -132,8 +127,6 @@ public class StringOperations {
     // Если в массиве нет палиндромов, возвращает пустую строку.
     //убрать maxLength
     public static String getLongestPalindromeIgnoreCase(String[] strings) {
-
-
         String res = "";
         for(String i: strings){
             if(isPalindromeIgnoreCase(i)&&res.length()<i.length()){
@@ -159,7 +152,8 @@ public class StringOperations {
     //Возвращает true, если после замены в string1 всех вхождений replaceInStr1 на replaceByInStr1 и
     // замены в string2 всех вхождений replaceInStr2
     // на replaceByInStr2 полученные строки равны.
-    public static boolean isEqualAfterReplaceCharacters(String first, char replaceInStr1, char replaceByInStr1, String second, char replceInStr2, char replaceByInStr2) {
+    public static boolean isEqualAfterReplaceCharacters(String first, char replaceInStr1, char replaceByInStr1, String second,
+                                                        char replceInStr2, char replaceByInStr2) {
         return first.replace(replaceInStr1,replaceByInStr1).equals(second.replace(replceInStr2,replaceByInStr2));
     }
 
@@ -172,7 +166,6 @@ public class StringOperations {
 
     //Возвращает true, если строка после выбрасывания из нее всех пробелов является палиндромом, без учета регистра.
     public static boolean isPalindromeAfterRemovingSpacesIgnoreCase(String first) {
-
         return isPalindromeIgnoreCase(first.replace(" ",""));
     }
 
@@ -184,20 +177,20 @@ public class StringOperations {
     //Для заданного массива целых чисел создает текстовую строку, в которой числа разделены знаком “запятая”
     // (т.н. формат CSV - comma separated values). Для пустого массива возвращается пустая строка.
     public static String makeCsvStringFromInts(int[] array1) {
-        if(array1.length==0)return "";
 
+        if(array1.length==0)return "";
         StringJoiner sj = new StringJoiner(",");
         for(int i : array1){
             sj.add(String.valueOf(i));
         }
         return sj.toString();
-
     }
 
     //Для заданного массива вещественных чисел создает текстовую строку, в которой числа разделены знаком “запятая”,
     // причем каждое число записывается с двумя знаками после точки. Для пустого массива возвращается пустая строка.
     public static String makeCsvStringFromDoubles(double[] array1) {
-        if(array1.length==0)return "";
+
+        if(array1.length==0) return "";
         StringJoiner sj = new StringJoiner(",");
         for(double i : array1){
             sj.add(String.format("%.2f", i));
@@ -219,13 +212,13 @@ public class StringOperations {
     //что будут передаваться только допустимые номера, упорядоченные по возрастанию.
     // Номера позиций для удаления указаны для исходной строки. Возвращает полученный в результате StringBuilder.
     public static StringBuilder removeCharacters(String s, int[] position) {
+
         StringBuilder sb = new StringBuilder(s);
         int count = 0;
        for(int i :position){
           sb.deleteCharAt(i+count);
            count--;
        }
-
       return sb;
     }
 
@@ -236,14 +229,13 @@ public class StringOperations {
     // Предполагается, что будут передаваться только допустимые номера, упорядоченные по неубыванию.
     // Возвращает полученный в результате StringBuilder.
     public static StringBuilder insertCharacters(String string, int[] positions, char[] characters) {
-        StringBuilder sb = new StringBuilder(string);
 
+        StringBuilder sb = new StringBuilder(string);
         int count = 0;
         for(int i = 0; i < positions.length;i++){
             sb.insert(positions[i]+ count,characters[i]);
             count++;
         }
-
         return sb;
     }
 }

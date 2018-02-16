@@ -8,11 +8,8 @@ public class NumberOperations {
     // Если такое значение найдено, возвращает его позицию в массиве array, в противном случае возвращает null.
     public static Integer find(int[] array, int value) {
 
-
         for (int i =0;i<array.length;i++) {
-
             if (array[i] == value) return i;
-
         }
         return null;
     }
@@ -23,7 +20,6 @@ public class NumberOperations {
 
         for (int i = 0 ; i < array.length;i++) {
             if (Math.abs(array[i]- value) <= eps) return i;
-
         }
         return null;
     }
@@ -31,6 +27,7 @@ public class NumberOperations {
     //Вычисляет плотность вещества по формуле weight / volume. Если получившееся значение не превышает max и не меньше min,
     // возвращает полученное значение, в противном случае возвращает null.
     public static Double calculateDensity(double weight, double volume, double min, double max) {
+
         Double res = weight/volume;
         if(res>min && res<max)return res;
         return null;
@@ -41,11 +38,8 @@ public class NumberOperations {
     // Если такое значение найдено, возвращает его позицию в массиве array, в противном случае возвращает null.
     public static Integer find(BigInteger[] array, BigInteger value){
 
-
-
         for (int i = 0; i < array.length;i++) {
             if (array[i].compareTo(value) == 0) return i;
-
         }
         return null;
     }
