@@ -1,5 +1,8 @@
 package net.thumbtack.school.base;
 
+
+import java.util.StringJoiner;
+
 public class StringOperations {
     //Возвращает суммарную длину строк, заданных массивом strings.
     public static int getSummaryLength(String[] strings) {
@@ -11,11 +14,12 @@ public class StringOperations {
     }
     //Возвращает двухсимвольную строку, состоящую из начального и конечного символов заданной строки.
     public static String getFirstAndLastLetterString(String first) {
-        String c = String.valueOf(first.charAt(0));
-       String b = String.valueOf(first.charAt(first.length()-1));
+        StringBuilder sb = new StringBuilder();
+        sb.append(first.charAt(0));
+        sb.append(first.charAt(first.length()-1));
 
 
-         return c + b  ;
+         return String.valueOf(sb);
     }
     //Возвращает true, если обе строки в позиции index содержат один и тот же символ, иначе false.
     public static boolean isSameCharAtPosition(String first, String second, int index) {
@@ -25,10 +29,10 @@ public class StringOperations {
 
 
     //Возвращает true, если в обеих строках первый встреченный символ character находится в одной и той же позиции.
-    // Просмотр строк ведется от начала.
+    // Просмотр с трок ведется от начала.
     public static boolean isSameFirstCharPosition(String first, String second, char character) {
 
-                return first.indexOf(character,0)==second.indexOf(character,0);
+                return first.indexOf(character)==second.indexOf(character);
     }
 
     //Возвращает true, если в обеих строках первый встреченный символ character находится в одной и той же позиции.
@@ -79,12 +83,13 @@ public class StringOperations {
 
     //Возвращает true, если обе строки string1 и string2 начинаются с одной и той же подстроки prefix.
     public static boolean isSamePrefix(String string1, String string2, String prefix) {
-        return string1.startsWith(prefix)==string2.startsWith(prefix);
+        return string1.startsWith(prefix) && string2.startsWith(prefix) && string1.startsWith(prefix) == string2.startsWith(prefix);
+
     }
 
     //Возвращает true, если обе строки string1 и string2 заканчиваются одной и той же подстрокой suffix.
     public static boolean isSameSuffix(String string1, String string2, String prefix) {
-        return string1.endsWith(prefix)==string2.endsWith(prefix);
+        return string1.endsWith(prefix) && string2.endsWith(prefix) && string1.endsWith(prefix) == string2.endsWith(prefix);
     }
 
     //Возвращает самое длинное общее “начало” двух строк. Если у строк нет общего начала, возвращает пустую строку.
@@ -93,36 +98,25 @@ public class StringOperations {
         if(first.length()== 0 || second.length()==0 ) return "";
 
         StringBuilder sb = new StringBuilder("");
-        if(isLess(first,second)) {
-            for (int i = 0; i < first.length();i++) {
+
+        int length=second.length();
+
+        if(isLess(first,second))length=first.length();
+
+            for (int i = 0; i < length;i++) {
                if(!(first.charAt(i)==second.charAt(i))) break;
                    sb.append(first.charAt(i));
             }
+
             return String.valueOf(sb);
-        }else
-        {
-            for (int j = 0; j < second.length();j++) {
-
-                if(!(second.charAt(j)==first.charAt(j))) break;
-                sb.append(second.charAt(j));
-
-            }
-            return String.valueOf(sb);
-
-        }
-
     }
 
     //Возвращает true, если строка является палиндромом, то есть читается слева направо так же, как и справа налево.
     public static boolean isPalindrome(String first) {
 
-        char[]c = first.toCharArray();
-
-        for(int i = 0 ; i < c.length/2;i++){
-            if (c[i] != c[c.length-i-1])
+        for(int i = 0 ; i < first.length()/2;i++){
+            if (first.charAt(i) != first.charAt(first.length()-i-1))
                 return false;
-
-
             }
             return true;
         }
@@ -131,27 +125,16 @@ public class StringOperations {
 
     //Возвращает true, если строка является палиндромом, то есть читается слева направо так же, как и справа налево, без учета регистра.
     public static boolean isPalindromeIgnoreCase(String string) {
-
-        String buff ;
-        String buff1;
-        char[]c = string.toCharArray();
-
-        for(int i = 0 ; i < c.length/2;i++){
-            buff = String.valueOf(c[i]);
-            buff1 = String.valueOf(c[c.length-i-1]);
-           if(!isEqualIgnoreCase(buff,buff1))
-               return false;
-
-        }
-        return true;
+        return isPalindrome(string.toLowerCase());
     }
 
     //Возвращает самый длинный палиндром (без учета регистра) из массива заданных строк.
     // Если в массиве нет палиндромов, возвращает пустую строку.
+    //убрать maxLength
     public static String getLongestPalindromeIgnoreCase(String[] strings) {
         int maxLength=0;
-        String res = "";
 
+        String res = "";
         for(String i: strings){
             if(isPalindromeIgnoreCase(i)&&maxLength<i.length()){
                 maxLength=i.length();
@@ -204,12 +187,11 @@ public class StringOperations {
     public static String makeCsvStringFromInts(int[] array1) {
         if(array1.length==0)return "";
 
-        StringBuilder sb = new StringBuilder();
+        StringJoiner sj = new StringJoiner(",");
         for(int i : array1){
-            sb.append(i).append(",");
+            sj.add(String.valueOf(i));
         }
-        sb.deleteCharAt(sb.length()-1);
-    return String.valueOf(sb);
+        return sj.toString();
 
     }
 
@@ -217,12 +199,11 @@ public class StringOperations {
     // причем каждое число записывается с двумя знаками после точки. Для пустого массива возвращается пустая строка.
     public static String makeCsvStringFromDoubles(double[] array1) {
         if(array1.length==0)return "";
-        StringBuilder sb = new StringBuilder();
+        StringJoiner sj = new StringJoiner(",");
         for(double i : array1){
-            sb.append(String.format("%.2f", i)).append(",");
+            sj.add(String.format("%.2f", i));
         }
-        sb.deleteCharAt(sb.length()-1);
-        return String.valueOf(sb);
+        return sj.toString();
     }
 
     //То же, что и в упражнении 24, но возвращает StringBuilder.
@@ -240,17 +221,13 @@ public class StringOperations {
     // Номера позиций для удаления указаны для исходной строки. Возвращает полученный в результате StringBuilder.
     public static StringBuilder removeCharacters(String s, int[] position) {
         StringBuilder sb = new StringBuilder(s);
-       for(int i: position){
-          sb.deleteCharAt(i);
-          sb.insert(i," ");
+        int count = 0;
+       for(int i :position){
+          sb.deleteCharAt(i+count);
+           count--;
        }
 
-       String s1 = sb.toString().replace(" ","");
-
-
-
-
-      return new StringBuilder(s1);
+      return sb;
     }
 
     //Вставляет в строку символы. Массивы positions и characters имеют одинаковую длину.
