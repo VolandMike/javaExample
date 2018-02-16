@@ -132,12 +132,11 @@ public class StringOperations {
     // Если в массиве нет палиндромов, возвращает пустую строку.
     //убрать maxLength
     public static String getLongestPalindromeIgnoreCase(String[] strings) {
-        int maxLength=0;
+
 
         String res = "";
         for(String i: strings){
-            if(isPalindromeIgnoreCase(i)&&maxLength<i.length()){
-                maxLength=i.length();
+            if(isPalindromeIgnoreCase(i)&&res.length()<i.length()){
                 res = i;
             }
         }
