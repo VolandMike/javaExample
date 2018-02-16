@@ -7,11 +7,12 @@ public class NumberOperations {
     //Ищет в массиве array первый элемент, значение которого равно value.
     // Если такое значение найдено, возвращает его позицию в массиве array, в противном случае возвращает null.
     public static Integer find(int[] array, int value) {
-        int count = 0;
-        for (Integer i : array) {
 
-            if (i.compareTo(value) == 0) return count;
-            count++;
+
+        for (int i =0;i<array.length;i++) {
+
+            if (array[i] == value) return i;
+
         }
         return null;
     }
@@ -19,11 +20,10 @@ public class NumberOperations {
     //Ищет в массиве array первый элемент, значение которого по модулю не отличается от value более чем на eps.
     // Если такое значение найдено, возвращает его позицию в массиве array, в противном случае возвращает null.
     public static Integer find(double[] array, double value, double eps) {
-        int count = 0;
-        for (double i : array) {
-            if (Math.abs(i- value) <= eps) return count;
 
-            count++;
+        for (int i = 0 ; i < array.length;i++) {
+            if (Math.abs(array[i]- value) <= eps) return i;
+
         }
         return null;
     }
@@ -40,10 +40,12 @@ public class NumberOperations {
     // Ищет в массиве array первый элемент, значение которого равно value.
     // Если такое значение найдено, возвращает его позицию в массиве array, в противном случае возвращает null.
     public static Integer find(BigInteger[] array, BigInteger value){
-        int count = 0;
-        for (BigInteger i : array) {
-            if (i.compareTo(value) == 0) return count;
-            count++;
+
+
+
+        for (int i = 0; i < array.length;i++) {
+            if (array[i].compareTo(value) == 0) return i;
+
         }
         return null;
     }
