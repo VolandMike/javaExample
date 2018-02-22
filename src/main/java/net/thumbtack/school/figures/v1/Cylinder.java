@@ -26,53 +26,17 @@ public class Cylinder extends Circle {
         this.height = 1;
     }
 
-    @Override
-    public Point2D getCenter() {
-        return super.getCenter();
-    }
 
-    @Override
-    public int getRadius() {
-        return super.getRadius();
-    }
 
     public int getHeight() {
         return height;
     }
-    @Override
-    public void setCenter(Point2D center) {
-        super.setCenter(center);
-    }
-
-    @Override
-    public void setRadius(int radius) {
-        super.setRadius(radius);
-    }
-
 
     public void setHeight(int height) {
         this.height = height;
     }
 
-    @Override
-    public void moveRel(int dx, int dy) {
-        super.moveRel(dx, dy);
-    }
 
-    @Override
-    public void enlarge(int n) {
-        super.enlarge(n);
-    }
-
-    @Override
-    public double getArea() {
-        return super.getArea();
-    }
-
-    @Override
-    public double getPerimeter() {
-        return super.getPerimeter();
-    }
 
     public double getVolume(){
         return getArea()*height;
@@ -83,7 +47,7 @@ public class Cylinder extends Circle {
     }
     //    Определяет, лежит ли точка point внутри Cylinder. Если точка лежит на поверхности, считается, что она лежит внутри.
     public boolean isInside(Point3D point){
-        return isInside(point.getX(),point.getY(),point.getZ());
+        return this.isInside(point.getX(),point.getY(),point.getZ());
     }
 
     @Override
