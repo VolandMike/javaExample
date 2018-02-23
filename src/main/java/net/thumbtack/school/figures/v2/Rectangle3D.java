@@ -1,4 +1,5 @@
-package net.thumbtack.school.figures.v1;
+
+package net.thumbtack.school.figures.v2;
 
 import java.util.Objects;
 
@@ -7,23 +8,23 @@ public class Rectangle3D extends Rectangle {
     private int height;
 
     //Создает Rectangle3D по координатам углов основания (левого верхнего и правого нижнего) и высотой.
-    public Rectangle3D(Point2D leftTop, Point2D rightBottom,int height) {
-        super(leftTop, rightBottom);
+    public Rectangle3D(Point2D leftTop, Point2D rightBottom, int height,int color) {
+        super(leftTop, rightBottom,color);
         this.height = height;
     }
     //Создает Rectangle3D по координатам углов основания (левого верхнего и правого нижнего) и высотой.
-    public Rectangle3D(int xLeft, int yTop, int xRight, int yBottom,int height) {
-        super(xLeft, yTop, xRight, yBottom);
+    public Rectangle3D(int xLeft, int yTop, int xRight, int yBottom,int height,int color) {
+        super(xLeft, yTop, xRight, yBottom,color);
         this.height = height;
     }
     //Создает Rectangle3D, левый нижний угол которого находится в начале координат, а  длина, ширина и высота задаются.
-    public Rectangle3D(int length, int width,int height) {
-        super(length, width);
+    public Rectangle3D(int length, int width,int height,int color) {
+        super(length, width,color);
         this.height = height;
     }
     //Создает Rectangle3D с размерами (1, 1, 1), левый нижний угол которого находится в начале координат.
-    public Rectangle3D() {
-        super();
+    public Rectangle3D(int color) {
+        super(color);
         height = 1;
     }
 
@@ -81,3 +82,4 @@ public class Rectangle3D extends Rectangle {
         return Objects.hash(super.hashCode(), height);
     }
 }
+

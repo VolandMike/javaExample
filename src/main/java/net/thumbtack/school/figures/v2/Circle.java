@@ -1,32 +1,37 @@
-package net.thumbtack.school.figures.v1;
+package net.thumbtack.school.figures.v2;
 
 import java.util.Objects;
 
-public class Circle {
+public class Circle extends Figure {
 
     private Point2D center;
     private int raduis;
 
-    //Создает Circle по координатам центра и значению радиуса.
-    public Circle(Point2D center, int raduis){
 
+
+
+    //Создает Circle по координатам центра и значению радиуса.
+    public Circle(Point2D center, int raduis,int color){
+
+        super(color);
         this.center = center;
         this.raduis = raduis;
+
     }
 
     //    Создает Circle по координатам центра и значению радиуса.
-    public Circle(int xCenter, int yCenter, int radius){
+    public Circle(int xCenter, int yCenter, int radius,int color){
 
-        this(new Point2D(xCenter,yCenter),radius);
+        this(new Point2D(xCenter,yCenter),radius,color);
     }
     //Создает Circle с центром в точке (0,0) указанного радиуса.
-    public Circle(int radius){
-        this(0,0,radius);
+    public Circle(int radius,int color){
+        this(0,0,radius,color);
     }
 
     //    Создает Circle с центром в точке (0,0) с радиусом 1.
-    public Circle(){
-        this(0,0,1);
+    public Circle(int color){
+        this(0,0,1,color);
     }
 
     //   Возвращает центр Circle.
@@ -80,10 +85,20 @@ public class Circle {
 
     }
 
+    //Определяет, лежит ли точка point внутри Circle.
+    // Если точка лежит на окружности, считается, что она лежит внутри.
+  /*  public boolean isInside(Point2D point){
+
+
+        return isInside(point.getX(),point.getY());
+
+    }*/
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Circle circle = (Circle) o;
         return raduis == circle.raduis &&
                 Objects.equals(center, circle.center);
@@ -92,16 +107,6 @@ public class Circle {
     @Override
     public int hashCode() {
 
-        return Objects.hash(center, raduis);
+        return Objects.hash(super.hashCode(), center, raduis);
     }
-
-    //Определяет, лежит ли точка point внутри Circle.
-    // Если точка лежит на окружности, считается, что она лежит внутри.
-    public boolean isInside(Point2D point){
-
-
-        return isInside(point.getX(),point.getY());
-
-    }
-
 }

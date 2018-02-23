@@ -1,32 +1,35 @@
-package net.thumbtack.school.figures.v1;
+
+package net.thumbtack.school.figures.v2;
 
 import java.util.Objects;
 
-public class Rectangle {
+public class Rectangle extends Figure  {
     private Point2D leftTop;
     private Point2D rightBottom;
 
+
 //    Создает Rectangle по координатам углов - левого верхнего и правого нижнего.
-    public Rectangle(Point2D leftTop, Point2D rightBottom) {
+    public Rectangle(Point2D leftTop, Point2D rightBottom,int color) {
+        super(color);
         this.leftTop = leftTop;
         this.rightBottom = rightBottom;
 
     }
     //Создает Rectangle по координатам углов - левого верхнего и правого нижнего.
-    public Rectangle(int xLeft, int yTop, int xRight, int yBottom){
+    public Rectangle(int xLeft, int yTop, int xRight, int yBottom,int color){
 
-        this(new Point2D(xLeft,yTop),new Point2D(xRight,yBottom));
+        this(new Point2D(xLeft,yTop),new Point2D(xRight,yBottom),color);
     }
 
 //Создает Rectangle, левый нижний угол которого находится в начале координат,
 // а  длина (по оси X) и ширина (по оси Y) задаются.
-    public Rectangle(int length, int width){
-        this(0,-width,length,0);
+    public Rectangle(int length, int width,int color){
+        this(0,-width,length,0,color);
     }
 
 //Создает Rectangle с размерами (1,1), левый нижний угол которого находится в начале координат.
-    public Rectangle(){
-        this(0,-1,1,0);
+    public Rectangle(int color){
+        this(0,-1,1,0,color);
     }
 //Возвращает левую верхнюю точку Rectangle.
     public Point2D getTopLeft(){
@@ -86,10 +89,10 @@ public class Rectangle {
     }
 
     //Определяет, лежит ли точка point внутри Rectangle. Если точка лежит на стороне, считается, что она лежит внутри.
-    public boolean isInside(Point2D point){
+/*    public boolean isInside(Point2D point){
 
         return isInside(point.getX(),point.getY());
-    }
+    }*/
 
     // Определяет, пересекается  ли Rectangle с другим Rectangle. Считается, что прямоугольники пересекаются,
     // если у них есть хоть одна общая точка.
@@ -108,6 +111,7 @@ public class Rectangle {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Rectangle rectangle = (Rectangle) o;
         return Objects.equals(leftTop, rectangle.leftTop) &&
                 Objects.equals(rightBottom, rectangle.rightBottom);
@@ -116,6 +120,8 @@ public class Rectangle {
     @Override
     public int hashCode() {
 
-        return Objects.hash(leftTop, rightBottom);
+        return Objects.hash(super.hashCode(), leftTop, rightBottom);
     }
+
 }
+

@@ -1,28 +1,30 @@
-package net.thumbtack.school.figures.v1;
+package net.thumbtack.school.figures.v2;
 
 import java.util.Objects;
 
-public class Cylinder extends Circle {
+public class Cylinder extends Circle  {
     private int height;
 
+
+
     //Создает Cylinder по координатам центра, значению радиуса и высоте.
-    public Cylinder(Point2D center, int raduis,int height) {
-        super(center, raduis);
+    public Cylinder(Point2D center, int raduis, int height,int color) {
+        super(center, raduis,color);
         this.height = height;
     }
     //Создает Cylinder по координатам центра, значению радиуса и высоте.
-    public Cylinder(int xCenter, int yCenter, int radius,int height) {
-        super(xCenter, yCenter, radius);
+    public Cylinder(int xCenter, int yCenter, int radius,int height,int color) {
+        super(xCenter, yCenter, radius,color);
         this.height = height;
     }
     //Создает Cylinder  с центром в точке (0, 0) с указанными радиусом и высотой.
-    public Cylinder(int radius,int height) {
-        super(radius);
+    public Cylinder(int radius,int height,int color) {
+        super(radius,color);
         this.height = height;
     }
     //Создает Cylinder  с центром в точке (0, 0) с радиусом 1 и высотой 1.
-    public Cylinder() {
-        super();
+    public Cylinder(int color) {
+        super(color);
         this.height = 1;
     }
 
@@ -38,9 +40,11 @@ public class Cylinder extends Circle {
 
 
 
+    //Возвращает объем Cylinder.
     public double getVolume(){
         return getArea()*height;
     }
+
 
     public boolean isInside(int x, int y,int z) {
         return super.isInside(x, y)&&height>=z;
@@ -50,18 +54,5 @@ public class Cylinder extends Circle {
         return this.isInside(point.getX(),point.getY(),point.getZ());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Cylinder cylinder = (Cylinder) o;
-        return height == cylinder.height;
-    }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(super.hashCode(), height);
-    }
 }

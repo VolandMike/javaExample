@@ -1,14 +1,16 @@
-package net.thumbtack.school.figures.v1;
+
+package net.thumbtack.school.figures.v2;
 
 import java.util.Objects;
 
-public class Triangle {
+public class Triangle extends Figure {
     private Point2D point1;
     private Point2D point2;
     private Point2D point3;
 
     //   Создает Triangle по координатам трех точек.
-    public Triangle(Point2D point1, Point2D point2, Point2D point3){
+    public Triangle(Point2D point1, Point2D point2, Point2D point3,int color){
+        super(color);
         this.point1 = point1;
         this.point2 = point2;
         this.point3 = point3;
@@ -46,21 +48,7 @@ public class Triangle {
         return Math.sqrt(a*a+b*b);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Triangle triangle = (Triangle) o;
-        return Objects.equals(point1, triangle.point1) &&
-                Objects.equals(point2, triangle.point2) &&
-                Objects.equals(point3, triangle.point3);
-    }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(point1, point2, point3);
-    }
 
     //Возвращает длину стороны 1-3.
     public double getSide13(){
@@ -119,8 +107,26 @@ public class Triangle {
 
     //    Определяет, лежит ли точка point внутри Triangle.
     // Если точка лежит на стороне треугольника, считается, что она лежит внутри.
-    public boolean isInside(Point2D point){
+   /* public boolean isInside(Point2D point){
 
         return isInside(point.getX(),point.getY());
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Triangle triangle = (Triangle) o;
+        return Objects.equals(point1, triangle.point1) &&
+                Objects.equals(point2, triangle.point2) &&
+                Objects.equals(point3, triangle.point3);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(super.hashCode(), point1, point2, point3);
     }
 }
+
