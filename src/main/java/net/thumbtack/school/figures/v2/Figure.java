@@ -2,24 +2,26 @@ package net.thumbtack.school.figures.v2;
 
 import java.util.Objects;
 
-abstract  class Figure implements Colored {
+abstract class Figure implements Colored {
     private int color;
 
 
+    /**
+     * Конструктор класса фигура с параметром color.
+     *
+     * @param color - цвет фигуры
+     */
     public Figure(int color) {
-        super();
         this.color = color;
     }
 
     public int getColor() {
         return color;
     }
+
     public void setColor(int color) {
         this.color = color;
     }
-
-
-
 
     @Override
     public boolean equals(Object o) {
@@ -35,18 +37,46 @@ abstract  class Figure implements Colored {
         return Objects.hash(color);
     }
 
-    //площадь фигуры
+    /**
+     * метод находит площадь фигуры
+     *
+     * @return площадь фигуры
+     */
     public abstract double getArea();
 
 
-    //Определяет, лежит ли точка внутри фигуры
+    /**
+     * Определяет, лежит ли точка c координатами x,y внутри фигуры
+     *
+     * @param x
+     * @param y
+     * @return true - лежит, false - не лежит
+     */
     public abstract boolean isInside(int x, int y);
 
-    public boolean isInside(Point2D point){
+    /**
+     * Определяет, лежит ли точка point внутри фигуры
+     *
+     * @param point
+     * @return true - лежит, false - не лежит
+     */
+    public boolean isInside(Point2D point) {
 
-        return isInside(point.getX(),point.getY());
+        return isInside(point.getX(), point.getY());
     }
 
-    //Передвигает фигуру на (dx, dy).
+    /**
+     * Передвигает фигуру на (dx, dy).
+     *
+     * @param x
+     * @param y
+     */
     public abstract void moveRel(int x, int y);
+
+    /**
+     * Вычисляет периметр фигуры
+     *
+     * @return периметр фигуры
+     */
+    public abstract double getPerimeter();
 }
