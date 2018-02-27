@@ -1,9 +1,13 @@
 
-package net.thumbtack.school.figures.v2;
+package net.thumbtack.school.figures.v3;
+
+import net.thumbtack.school.area.HasArea;
+import net.thumbtack.school.colors.Color;
+import net.thumbtack.school.colors.ColorException;
 
 import java.util.Objects;
 
-public class Triangle extends Figure {
+public class Triangle extends Figure implements HasArea {
     private Point2D point1;
     private Point2D point2;
     private Point2D point3;
@@ -16,7 +20,13 @@ public class Triangle extends Figure {
      * @param point3
      * @param color
      */
-    public Triangle(Point2D point1, Point2D point2, Point2D point3, int color) {
+    public Triangle(Point2D point1, Point2D point2, Point2D point3, Color color) throws ColorException {
+        super(color);
+        this.point1 = point1;
+        this.point2 = point2;
+        this.point3 = point3;
+    }
+    public Triangle(Point2D point1, Point2D point2, Point2D point3, String color) throws ColorException {
         super(color);
         this.point1 = point1;
         this.point2 = point2;

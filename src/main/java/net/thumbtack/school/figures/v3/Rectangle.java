@@ -1,9 +1,13 @@
 
-package net.thumbtack.school.figures.v2;
+package net.thumbtack.school.figures.v3;
+
+import net.thumbtack.school.area.HasArea;
+import net.thumbtack.school.colors.Color;
+import net.thumbtack.school.colors.ColorException;
 
 import java.util.Objects;
 
-public class Rectangle extends Figure {
+public class Rectangle extends Figure implements HasArea {
     private Point2D leftTop;
     private Point2D rightBottom;
 
@@ -15,10 +19,15 @@ public class Rectangle extends Figure {
      * @param rightBottom
      * @param color
      */
-    public Rectangle(Point2D leftTop, Point2D rightBottom, int color) {
+    public Rectangle(Point2D leftTop, Point2D rightBottom, Color color) throws ColorException {
         super(color);
         this.leftTop = leftTop;
         this.rightBottom = rightBottom;
+
+    }
+
+    public Rectangle(Point2D leftTop, Point2D rightBottom, String color) throws ColorException {
+        this(leftTop, rightBottom, Color.colorFromString(color));
 
     }
 
@@ -31,9 +40,14 @@ public class Rectangle extends Figure {
      * @param yBottom
      * @param color
      */
-    public Rectangle(int xLeft, int yTop, int xRight, int yBottom, int color) {
+    public Rectangle(int xLeft, int yTop, int xRight, int yBottom, Color color) throws ColorException {
 
         this(new Point2D(xLeft, yTop), new Point2D(xRight, yBottom), color);
+    }
+
+    public Rectangle(int xLeft, int yTop, int xRight, int yBottom, String color) throws ColorException {
+
+        this(new Point2D(xLeft, yTop), new Point2D(xRight, yBottom), Color.colorFromString(color));
     }
 
     /**
@@ -44,8 +58,12 @@ public class Rectangle extends Figure {
      * @param width
      * @param color
      */
-    public Rectangle(int length, int width, int color) {
+    public Rectangle(int length, int width, Color color) throws ColorException {
         this(0, -width, length, 0, color);
+    }
+
+    public Rectangle(int length, int width, String color) throws ColorException {
+        this(0, -width, length, 0, Color.colorFromString(color));
     }
 
     /**
@@ -54,8 +72,12 @@ public class Rectangle extends Figure {
      * @param color
      */
 
-    public Rectangle(int color) {
+    public Rectangle(Color color) throws ColorException {
         this(0, -1, 1, 0, color);
+    }
+
+    public Rectangle(String color) throws ColorException {
+        this(0, -1, 1, 0, Color.colorFromString(color));
     }
 
     public Point2D getTopLeft() {
