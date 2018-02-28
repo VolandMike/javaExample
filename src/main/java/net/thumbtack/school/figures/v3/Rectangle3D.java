@@ -34,8 +34,7 @@ public class Rectangle3D extends Rectangle {
      * @throws ColorException Ошибка при неверных параметрах Color
      */
     public Rectangle3D(Point2D leftTop, Point2D rightBottom, int height, String color) throws ColorException {
-        super(leftTop, rightBottom, color);
-        this.height = height;
+        this(leftTop,rightBottom,height,Color.colorFromString(color));
     }
 
     /**

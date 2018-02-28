@@ -33,8 +33,7 @@ public class Cylinder extends Circle {
      * @throws ColorException Ошибка при неверных параметрах Color
      */
     public Cylinder(Point2D center, int raduis, int height, String color) throws ColorException {
-        super(center, raduis, color);
-        this.height = height;
+        this(center,raduis,height,Color.colorFromString(color));
     }
 
     /**
