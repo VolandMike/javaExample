@@ -28,9 +28,7 @@ public class CircleFactory {
      * @throws ColorException Ошибка при неверных параметрах Color
      */
     public static Circle createCircle(Point2D center, int radius, String color) throws ColorException {
-
-        circleCount++;
-        return new Circle(center, radius, Color.colorFromString(color));
+      return createCircle(center, radius, Color.colorFromString(color));
     }
 
 

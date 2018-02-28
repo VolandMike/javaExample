@@ -21,29 +21,23 @@ public abstract class Figure implements Colored, HasArea {
     }
 
     public Figure(String color) throws ColorException {
-        setColor(color);
+        this(Color.colorFromString(color));
     }
-
+    @Override
     public Color getColor() {
         return color;
     }
-
+    @Override
     public void setColor(Color color) throws ColorException {
         if (color == null) throw new ColorException(ColorErrorCode.NULL_COLOR);
         this.color = color;
     }
-
+    @Override
     public void setColor(String colorString) throws ColorException {
         this.color = Color.colorFromString(colorString);
     }
 
 
-    /**
-     * метод находит площадь фигуры
-     *
-     * @return площадь фигуры
-     */
-    public abstract double getArea();
 
 
     /**

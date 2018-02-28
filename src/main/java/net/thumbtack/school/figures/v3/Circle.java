@@ -6,7 +6,7 @@ import net.thumbtack.school.colors.ColorException;
 
 import java.util.Objects;
 
-public class Circle extends Figure implements HasArea {
+public class Circle extends Figure  {
 
     private Point2D center;
     private int raduis;
@@ -156,6 +156,7 @@ public class Circle extends Figure implements HasArea {
      *
      * @return Площадь круга
      */
+    @Override
     public double getArea() {
         return Math.PI * getRadius() * getRadius();
     }

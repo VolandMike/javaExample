@@ -7,7 +7,7 @@ import net.thumbtack.school.colors.ColorException;
 
 import java.util.Objects;
 
-public class Rectangle extends Figure implements HasArea {
+public class Rectangle extends Figure  {
     private Point2D leftTop;
     private Point2D rightBottom;
 
@@ -174,6 +174,7 @@ public class Rectangle extends Figure implements HasArea {
      *
      * @return Площадь треугольника
      */
+    @Override
     public double getArea() {
         return getWidth() * getLength();
     }

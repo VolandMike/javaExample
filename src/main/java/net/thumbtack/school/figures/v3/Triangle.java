@@ -7,7 +7,7 @@ import net.thumbtack.school.colors.ColorException;
 
 import java.util.Objects;
 
-public class Triangle extends Figure implements HasArea {
+public class Triangle extends Figure  {
     private Point2D point1;
     private Point2D point2;
     private Point2D point3;
@@ -121,6 +121,7 @@ public class Triangle extends Figure implements HasArea {
      *
      * @return площадь треугольника
      */
+    @Override
     public double getArea() {
         double p = getPerimeter() / 2;
 
