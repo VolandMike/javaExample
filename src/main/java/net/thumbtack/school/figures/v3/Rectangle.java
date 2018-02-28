@@ -15,9 +15,10 @@ public class Rectangle extends Figure implements HasArea {
     /**
      * Создает Rectangle по координатам углов - левого верхнего и правого нижнего.
      *
-     * @param leftTop
-     * @param rightBottom
-     * @param color
+     * @param leftTop - координата левого верхнего угла
+     * @param rightBottom - координата правого нижнего угла
+     * @param color - цвет прямоугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
      */
     public Rectangle(Point2D leftTop, Point2D rightBottom, Color color) throws ColorException {
         super(color);
@@ -26,6 +27,14 @@ public class Rectangle extends Figure implements HasArea {
 
     }
 
+    /**
+     * Создает Rectangle по координатам углов - левого верхнего и правого нижнего.
+     *
+     * @param leftTop - координата левого верхнего угла
+     * @param rightBottom - координата правого нижнего угла
+     * @param color - цвет прямоугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
+     */
     public Rectangle(Point2D leftTop, Point2D rightBottom, String color) throws ColorException {
         this(leftTop, rightBottom, Color.colorFromString(color));
 
@@ -34,17 +43,28 @@ public class Rectangle extends Figure implements HasArea {
     /**
      * Создает Rectangle по координатам углов - левого верхнего и правого нижнего.
      *
-     * @param xLeft
-     * @param yTop
-     * @param xRight
-     * @param yBottom
-     * @param color
+     * @param xLeft - координата x левого верхнего угла
+     * @param yTop - координата y левого верхнего угла
+     * @param xRight - координата x правого нижнего угла
+     * @param yBottom - координата y правого нижнего угла
+     * @param color - цвет прямоугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
      */
     public Rectangle(int xLeft, int yTop, int xRight, int yBottom, Color color) throws ColorException {
 
         this(new Point2D(xLeft, yTop), new Point2D(xRight, yBottom), color);
     }
 
+    /**
+     * Создает Rectangle по координатам углов - левого верхнего и правого нижнего.
+     *
+     * @param xLeft - координата x левого верхнего угла
+     * @param yTop - координата y левого верхнего угла
+     * @param xRight - координата x правого нижнего угла
+     * @param yBottom - координата y правого нижнего угла
+     * @param color - цвет прямоугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
+     */
     public Rectangle(int xLeft, int yTop, int xRight, int yBottom, String color) throws ColorException {
 
         this(new Point2D(xLeft, yTop), new Point2D(xRight, yBottom), Color.colorFromString(color));
@@ -54,14 +74,24 @@ public class Rectangle extends Figure implements HasArea {
      * Создает Rectangle, левый нижний угол которого находится в начале координат,
      * а  длина (по оси X) и ширина (по оси Y) задаются.
      *
-     * @param length
-     * @param width
-     * @param color
+     * @param length - длинна по оси X
+     * @param width - длина по оси Y
+     * @param color - цвет прямоугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
      */
     public Rectangle(int length, int width, Color color) throws ColorException {
         this(0, -width, length, 0, color);
     }
 
+    /**
+     * Создает Rectangle, левый нижний угол которого находится в начале координат,
+     * а  длина (по оси X) и ширина (по оси Y) задаются.
+     *
+     * @param length - длинна по оси X
+     * @param width - длина по оси Y
+     * @param color - цвет прямоугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
+     */
     public Rectangle(int length, int width, String color) throws ColorException {
         this(0, -width, length, 0, Color.colorFromString(color));
     }
@@ -69,13 +99,20 @@ public class Rectangle extends Figure implements HasArea {
     /**
      * Создает Rectangle с размерами (1,1), левый нижний угол которого находится в начале координат.
      *
-     * @param color
+     * @param color - цвет прямоугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
      */
 
     public Rectangle(Color color) throws ColorException {
         this(0, -1, 1, 0, color);
     }
 
+    /**
+     * Создает Rectangle с размерами (1,1), левый нижний угол которого находится в начале координат.
+     *
+     * @param color - цвет прямоугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
+     */
     public Rectangle(String color) throws ColorException {
         this(0, -1, 1, 0, Color.colorFromString(color));
     }
@@ -113,8 +150,8 @@ public class Rectangle extends Figure implements HasArea {
     /**
      * Передвигает Rectangle на (dx, dy).
      *
-     * @param dx
-     * @param dy
+     * @param dx - Изменение по оси X
+     * @param dy - Изменение по оси Y
      */
     public void moveRel(int dx, int dy) {
         getTopLeft().moveRel(dx, dy);
@@ -124,8 +161,8 @@ public class Rectangle extends Figure implements HasArea {
     /**
      * Увеличивает стороны Rectangle в (nx, ny) раз при сохранении координат левой верхней вершины.
      *
-     * @param nx
-     * @param ny
+     * @param nx - увеличение по оси X
+     * @param ny - увеличение по оси Y
      */
     public void enlarge(int nx, int ny) {
         rightBottom.moveTo(getLength() * nx + getTopLeft().getX(), getWidth() * ny + getTopLeft().getY());
@@ -153,8 +190,8 @@ public class Rectangle extends Figure implements HasArea {
     /**
      * Определяет, лежит ли точка (x, y) внутри Rectangle. Если точка лежит на стороне, считается, что она лежит внутри.
      *
-     * @param x
-     * @param y
+     * @param x - координата X
+     * @param y - координата Y
      * @return true - лежит, false - не лежит
      */
     public boolean isInside(int x, int y) {
@@ -166,7 +203,7 @@ public class Rectangle extends Figure implements HasArea {
      * Определяет, пересекается  ли Rectangle с другим Rectangle.
      * Считается, что прямоугольники пересекаются,если у них есть хоть одна общая точка.
      *
-     * @param rectangle
+     * @param rectangle - прямоугольник
      * @return true - пересекается, false - не пересекается
      */
     public boolean isIntersects(Rectangle rectangle) {
@@ -178,7 +215,7 @@ public class Rectangle extends Figure implements HasArea {
     /**
      * Определяет, лежит ли rectangle целиком внутри текущего Rectangle.
      *
-     * @param rectangle
+     * @param rectangle - прямоугольник
      * @return true - лежит, false - не лежит
      */
     public boolean isInside(Rectangle rectangle) {

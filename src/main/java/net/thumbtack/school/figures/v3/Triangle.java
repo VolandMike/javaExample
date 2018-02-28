@@ -15,10 +15,11 @@ public class Triangle extends Figure implements HasArea {
     /**
      * Создает Triangle по координатам трех точек.
      *
-     * @param point1
-     * @param point2
-     * @param point3
-     * @param color
+     * @param point1 - точка 1 с координатами (x,y)
+     * @param point2 - точка 2 с координатами (x,y)
+     * @param point3 - точка 3 с координатами (x,y)
+     * @param color - цвет треугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
      */
     public Triangle(Point2D point1, Point2D point2, Point2D point3, Color color) throws ColorException {
         super(color);
@@ -26,6 +27,16 @@ public class Triangle extends Figure implements HasArea {
         this.point2 = point2;
         this.point3 = point3;
     }
+
+    /**
+     * Создает Triangle по координатам трех точек.
+     *
+     * @param point1 - точка 1 с координатами (x,y)
+     * @param point2 - точка 2 с координатами (x,y)
+     * @param point3 - точка 3 с координатами (x,y)
+     * @param color - цвет треугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
+     */
     public Triangle(Point2D point1, Point2D point2, Point2D point3, String color) throws ColorException {
         super(color);
         this.point1 = point1;
@@ -62,7 +73,7 @@ public class Triangle extends Figure implements HasArea {
     /**
      * Возвращает длину стороны 1-2.
      *
-     * @return
+     * @return длина стороны 1-2
      */
     public double getSide12() {
         int a = point2.getX() - point1.getX();
@@ -73,7 +84,7 @@ public class Triangle extends Figure implements HasArea {
     /**
      * Возвращает длину стороны 1-3.
      *
-     * @return
+     * @return длина стороны 1-3
      */
     public double getSide13() {
         int a = point3.getX() - point1.getX();
@@ -85,7 +96,7 @@ public class Triangle extends Figure implements HasArea {
     /**
      * Возвращает длину стороны 2-3.
      *
-     * @return
+     * @return длина стороны 2-3
      */
     public double getSide23() {
         int b = point3.getX() - point2.getX();
@@ -96,8 +107,8 @@ public class Triangle extends Figure implements HasArea {
     /**
      * Передвигает Triangle на (dx, dy).
      *
-     * @param dx
-     * @param dy
+     * @param dx - изменение по х
+     * @param dy - изменение по у
      */
     public void moveRel(int dx, int dy) {
         point1.moveRel(dx, dy);
@@ -119,7 +130,7 @@ public class Triangle extends Figure implements HasArea {
     /**
      * Возвращает периметр треугольника.
      *
-     * @return
+     * @return периметр треугольника
      */
     public double getPerimeter() {
         return getSide12() + getSide13() + getSide23();
@@ -130,8 +141,8 @@ public class Triangle extends Figure implements HasArea {
      * Если точка лежит на стороне треугольника, считается, что она лежит внутри.
      * Алгоритм - Векторный метод.
      *
-     * @param x
-     * @param y
+     * @param x - координата х
+     * @param y - координата у
      * @return true - лежит, false - не лежит
      */
     public boolean isInside(int x, int y) {
