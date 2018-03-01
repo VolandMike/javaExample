@@ -1,9 +1,13 @@
 
-package net.thumbtack.school.figures.v2;
+package net.thumbtack.school.figures.v3;
+
+import net.thumbtack.school.area.HasArea;
+import net.thumbtack.school.colors.Color;
+import net.thumbtack.school.colors.ColorException;
 
 import java.util.Objects;
 
-public class Triangle extends Figure {
+public class Triangle extends Figure  {
     private Point2D point1;
     private Point2D point2;
     private Point2D point3;
@@ -11,16 +15,30 @@ public class Triangle extends Figure {
     /**
      * Создает Triangle по координатам трех точек.
      *
-     * @param point1
-     * @param point2
-     * @param point3
-     * @param color
+     * @param point1 - точка 1 с координатами (x,y)
+     * @param point2 - точка 2 с координатами (x,y)
+     * @param point3 - точка 3 с координатами (x,y)
+     * @param color - цвет треугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
      */
-    public Triangle(Point2D point1, Point2D point2, Point2D point3, int color) {
+    public Triangle(Point2D point1, Point2D point2, Point2D point3, Color color) throws ColorException {
         super(color);
         this.point1 = point1;
         this.point2 = point2;
         this.point3 = point3;
+    }
+
+    /**
+     * Создает Triangle по координатам трех точек.
+     *
+     * @param point1 - точка 1 с координатами (x,y)
+     * @param point2 - точка 2 с координатами (x,y)
+     * @param point3 - точка 3 с координатами (x,y)
+     * @param color - цвет треугольника
+     * @throws ColorException Ошибка при неверных параметрах Color
+     */
+    public Triangle(Point2D point1, Point2D point2, Point2D point3, String color) throws ColorException {
+        this(point1,point2,point3,Color.colorFromString(color));
     }
 
     public Point2D getPoint1() {
@@ -52,7 +70,7 @@ public class Triangle extends Figure {
     /**
      * Возвращает длину стороны 1-2.
      *
-     * @return
+     * @return длина стороны 1-2
      */
     public double getSide12() {
         int a = point2.getX() - point1.getX();
@@ -63,7 +81,7 @@ public class Triangle extends Figure {
     /**
      * Возвращает длину стороны 1-3.
      *
-     * @return
+     * @return длина стороны 1-3
      */
     public double getSide13() {
         int a = point3.getX() - point1.getX();
@@ -75,7 +93,7 @@ public class Triangle extends Figure {
     /**
      * Возвращает длину стороны 2-3.
      *
-     * @return
+     * @return длина стороны 2-3
      */
     public double getSide23() {
         int b = point3.getX() - point2.getX();
@@ -86,8 +104,8 @@ public class Triangle extends Figure {
     /**
      * Передвигает Triangle на (dx, dy).
      *
-     * @param dx
-     * @param dy
+     * @param dx - изменение по х
+     * @param dy - изменение по у
      */
     public void moveRel(int dx, int dy) {
         point1.moveRel(dx, dy);
@@ -100,6 +118,7 @@ public class Triangle extends Figure {
      *
      * @return площадь треугольника
      */
+    @Override
     public double getArea() {
         double p = getPerimeter() / 2;
 
@@ -109,7 +128,7 @@ public class Triangle extends Figure {
     /**
      * Возвращает периметр треугольника.
      *
-     * @return
+     * @return периметр треугольника
      */
     public double getPerimeter() {
         return getSide12() + getSide13() + getSide23();
@@ -120,8 +139,8 @@ public class Triangle extends Figure {
      * Если точка лежит на стороне треугольника, считается, что она лежит внутри.
      * Алгоритм - Векторный метод.
      *
-     * @param x
-     * @param y
+     * @param x - координата х
+     * @param y - координата у
      * @return true - лежит, false - не лежит
      */
     public boolean isInside(int x, int y) {
