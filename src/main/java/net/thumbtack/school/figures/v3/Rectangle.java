@@ -1,7 +1,6 @@
 
 package net.thumbtack.school.figures.v3;
 
-import net.thumbtack.school.area.HasArea;
 import net.thumbtack.school.colors.Color;
 import net.thumbtack.school.colors.ColorException;
 
