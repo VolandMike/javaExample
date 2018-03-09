@@ -1,9 +1,10 @@
 package net.thumbtack.school.ttschool;
 
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Trainee {
+public class Trainee implements Serializable {
     private String firstName;
     private String lastName;
     private int rating;
@@ -26,6 +27,15 @@ public class Trainee {
             throw new TrainingException(TrainingErrorCode.TRAINEE_WRONG_FIRSTNAME);
         }
         this.firstName = firstName;
+    }
+
+    @Override
+    public String toString() {
+        return "Trainee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", rating=" + rating +
+                '}';
     }
 
     public String getLastName() {

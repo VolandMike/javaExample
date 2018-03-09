@@ -11,6 +11,8 @@ public class Rectangle extends Figure  {
     private Point2D rightBottom;
 
 
+
+
     /**
      * Создает Rectangle по координатам углов - левого верхнего и правого нижнего.
      *
