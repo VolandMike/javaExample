@@ -23,7 +23,7 @@ public class Trainee implements Serializable {
     }
 
     public void setFirstName(String firstName) throws TrainingException {
-        if (firstName.equals("") || firstName == null) {
+        if (firstName == null||firstName.equals("")) {
             throw new TrainingException(TrainingErrorCode.TRAINEE_WRONG_FIRSTNAME);
         }
         this.firstName = firstName;
@@ -43,7 +43,8 @@ public class Trainee implements Serializable {
     }
 
     public void setLastName(String lastName) throws TrainingException {
-        if (lastName.equals("") || lastName == null)
+
+        if (lastName==null||lastName.equals(""))
             throw new TrainingException(TrainingErrorCode.TRAINEE_WRONG_LASTNAME);
         this.lastName = lastName;
     }
