@@ -6,8 +6,7 @@ public class TraineeMap {
     private Map<Trainee, String> traineeInfo;
 
     public TraineeMap() {
-        traineeInfo = new TreeMap<>(Comparator.comparing(Trainee::getFirstName).
-                thenComparing(Trainee::getLastName).thenComparing(Trainee::getRating));
+        traineeInfo = new HashMap<>();
     }
 
     public Map<Trainee, String> getTraineeInfo() {
@@ -66,11 +65,9 @@ public class TraineeMap {
      */
     public String getInstituteByTrainee(Trainee trainee) throws TrainingException {
         if (!getTraineeInfo().containsKey(trainee)) throw new TrainingException(TrainingErrorCode.TRAINEE_NOT_FOUND);
-        for (Trainee key : getTraineeInfo().keySet()) {
-            if (key.equals(trainee))
-                return getTraineeInfo().get(key);
-        }
-        return null;
+
+
+        return getTraineeInfo().get(trainee);
 
     }
 
@@ -94,7 +91,7 @@ public class TraineeMap {
      * @return
      */
     public Set<Trainee> getAllTrainees() {
-        return getTraineeInfo().keySet();
+        return new HashSet<>(getTraineeInfo().keySet());
     }
 
 
@@ -104,11 +101,9 @@ public class TraineeMap {
      * @return
      */
     public Set<String> getAllInstitutes() {
-        Set<String> set = new HashSet<>();
-        for (String key : getTraineeInfo().values()) {
-            set.add(key);
-        }
-        return set;
+
+
+        return new HashSet<>(getTraineeInfo().values());
     }
 
     /**

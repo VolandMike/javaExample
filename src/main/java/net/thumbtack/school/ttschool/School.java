@@ -1,21 +1,23 @@
 package net.thumbtack.school.ttschool;
 
-import java.util.Comparator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class School {
     private Set<Group> groups;
     private String name;
     private int year;
 
+    public School(String name, int year) throws TrainingException {
+        setName(name);
+        setYear(year);
+        groups = new HashSet<>();
+
+    }
+
     public Set<Group> getGroups() {
         return groups;
     }
 
-    public void setGroups(Set<Group> groups) {
-        this.groups = groups;
-    }
 
     public String getName() {
         return name;
@@ -35,13 +37,6 @@ public class School {
         this.year = year;
     }
 
-    public School(String name, int year) throws TrainingException {
-        setName(name);
-        setYear(year);
-        //новая запись лямбды
-        groups = new TreeSet<>(Comparator.comparing(Group::getName));
-
-    }
 
     /**
      * Добавляет Group в школу. Если группа с таким именем уже есть,
@@ -50,6 +45,10 @@ public class School {
      * @param group
      */
     public void addGroup(Group group) throws TrainingException {
+        for (Group i : getGroups()) {
+            if (i.getName().equals(group.getName()))
+                throw new TrainingException(TrainingErrorCode.DUPLICATE_GROUP_NAME);
+        }
         if (!getGroups().add(group)) throw new TrainingException(TrainingErrorCode.DUPLICATE_GROUP_NAME);
 
 
@@ -75,16 +74,16 @@ public class School {
      * @param name
      */
     public void removeGroup(String name) throws TrainingException {
-        boolean flag = false;
+
         for (Group g : getGroups()) {
             if (g.getName().equals(name)) {
                 removeGroup(g);
-                flag = true;
+
                 //т.к. такой один, и размер коллекции стал меньше
-                break;
+                return;
             }
         }
-        if (!flag) throw new TrainingException(TrainingErrorCode.GROUP_NOT_FOUND);
+        throw new TrainingException(TrainingErrorCode.GROUP_NOT_FOUND);
     }
 
     /**

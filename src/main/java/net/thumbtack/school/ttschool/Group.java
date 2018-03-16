@@ -42,10 +42,6 @@ public class Group {
         return trainee;
     }
 
-    public void setTrainee(List<Trainee> trainee) {
-        this.trainee = trainee;
-    }
-
     /**
      * Добавляет Trainee в группу.
      *
@@ -62,15 +58,9 @@ public class Group {
      * @param trainee
      */
     public void removeTrainee(Trainee trainee) throws TrainingException {
-        if (getTrainees().isEmpty()) throw new TrainingException(TrainingErrorCode.TRAINEE_NOT_FOUND);
-        boolean flag = false;
-        for (Trainee trainee1 : getTrainees()) {
-            if (trainee1.equals(trainee)) {
-                getTrainees().remove(trainee);
-                flag = true;
-            }
-        }
-        if (!flag) throw new TrainingException(TrainingErrorCode.TRAINEE_NOT_FOUND);
+
+        if (!getTrainees().remove(trainee))
+            throw new TrainingException(TrainingErrorCode.TRAINEE_NOT_FOUND);
     }
 
 
@@ -97,7 +87,6 @@ public class Group {
      * @return
      */
     public Trainee getTraineeByFirstName(String firstName) throws TrainingException {
-        if (getTrainees().isEmpty()) throw new TrainingException(TrainingErrorCode.TRAINEE_NOT_FOUND);
         for (Trainee trainee : getTrainees()) {
             if (trainee.getFirstName().equals(firstName)) {
                 return trainee;
@@ -116,7 +105,6 @@ public class Group {
      * @return
      */
     public Trainee getTraineeByFullName(String fullName) throws TrainingException {
-        if (getTrainees().isEmpty()) throw new TrainingException(TrainingErrorCode.TRAINEE_NOT_FOUND);
         for (Trainee trainee : getTrainees()) {
             if (trainee.getFullName().equals(fullName)) {
                 return trainee;
@@ -171,55 +159,26 @@ public class Group {
      * @return
      */
     public List<Trainee> getTraineesWithMaxRating() throws TrainingException {
-        List<Trainee> traineeListFife = new LinkedList<>();
-        List<Trainee> traineeListFour = new LinkedList<>();
-        List<Trainee> traineeListThree = new LinkedList<>();
-        List<Trainee> traineeListTwo = new LinkedList<>();
-        List<Trainee> traineeListOne = new LinkedList<>();
-        for (Trainee trainee : getTrainees()) {
-            switch (trainee.getRating()) {
-                case 1: {
-                    traineeListOne.add(trainee);
-                    break;
-                }
-                case 2: {
-                    traineeListTwo.add(trainee);
-                    break;
-                }
-                case 3: {
-                    traineeListThree.add(trainee);
-                    break;
-                }
-                case 4: {
-                    traineeListFour.add(trainee);
-                    break;
-                }
-                case 5: {
-                    traineeListFife.add(trainee);
-                    break;
-                }
-            }
 
-        }
+        if (getTrainees().isEmpty()) throw new TrainingException(TrainingErrorCode.TRAINEE_NOT_FOUND);
+        List<Trainee> traineeFavorite = new ArrayList<>();
 
-        if (!traineeListFife.isEmpty()) {
-            return traineeListFife;
-        } else if (!traineeListFour.isEmpty()) {
-            return traineeListFour;
-        } else if (!traineeListThree.isEmpty()) {
-            return traineeListThree;
-        } else if (!traineeListTwo.isEmpty()) {
-            return traineeListTwo;
-        } else if (!traineeListOne.isEmpty()) {
-            return traineeListOne;
+        int currentMaxRating = Collections.max(getTrainees(),
+                Comparator.comparing(Trainee::getRating)).getRating();
+
+        for (Trainee i : getTrainees()) {
+            if (i.getRating() == currentMaxRating)
+                traineeFavorite.add(i);
         }
 
 
-        throw new TrainingException(TrainingErrorCode.TRAINEE_NOT_FOUND);
+        return traineeFavorite;
+
     }
 
     /**
-     * Проверяет, есть ли в группе хотя бы одна пара Trainee, для которых совпадают имя, фамилия и оценка.
+     * Проверяет, есть ли в группе хотя бы одна пара Trainee,
+     * для которых совпадают имя, фамилия и оценка.
      *
      * @return
      */

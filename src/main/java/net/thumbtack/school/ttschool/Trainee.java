@@ -29,14 +29,6 @@ public class Trainee implements Serializable {
         this.firstName = firstName;
     }
 
-    @Override
-    public String toString() {
-        return "Trainee{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", rating=" + rating +
-                '}';
-    }
 
     public String getLastName() {
         return lastName;
