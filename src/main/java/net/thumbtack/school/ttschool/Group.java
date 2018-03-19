@@ -185,7 +185,10 @@ public class Group {
     public boolean hasDuplicates() {
         Set<Trainee> set = new HashSet<Trainee>();
 
-        for (Trainee each : getTrainees()) if (!set.add(each)) return true;
+        for (Trainee each : getTrainees())
+            if (!set.add(each))
+                return true;
+
         return false;
     }
 

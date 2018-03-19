@@ -10,7 +10,7 @@ public class School {
     public School(String name, int year) throws TrainingException {
         setName(name);
         setYear(year);
-        groups = new HashSet<>();
+        groups = new HashSet<Group>();
 
     }
 
@@ -49,7 +49,7 @@ public class School {
             if (i.getName().equals(group.getName()))
                 throw new TrainingException(TrainingErrorCode.DUPLICATE_GROUP_NAME);
         }
-        if (!getGroups().add(group)) throw new TrainingException(TrainingErrorCode.DUPLICATE_GROUP_NAME);
+        getGroups().add(group);
 
 
     }
@@ -62,7 +62,8 @@ public class School {
      */
     public void removeGroup(Group group) throws TrainingException {
 
-        if (!getGroups().remove(group)) throw new TrainingException(TrainingErrorCode.GROUP_NOT_FOUND);
+        if (!getGroups().remove(group))
+            throw new TrainingException(TrainingErrorCode.GROUP_NOT_FOUND);
 
     }
 
@@ -78,7 +79,6 @@ public class School {
         for (Group g : getGroups()) {
             if (g.getName().equals(name)) {
                 removeGroup(g);
-
                 //т.к. такой один, и размер коллекции стал меньше
                 return;
             }

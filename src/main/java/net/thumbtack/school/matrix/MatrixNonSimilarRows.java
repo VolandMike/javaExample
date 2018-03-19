@@ -36,16 +36,13 @@ public class MatrixNonSimilarRows {
     public Set<int[]> getNonSimilarRows() {
         Map<Set<Integer>, int[]> map = new HashMap<>();
 
-
-        for (int i = 0; i < getMas().length; i++) {
+        for (int i[] : getMas()) {
             //создаём временный set
             Set<Integer> temp1 = new HashSet<>();
-            for (int j = 0; j < getMas()[i].length; j++) {
-                temp1.add(mas[i][j]);
+            for (int j : i) {
+                temp1.add(j);
             }
-            //если такого не содержится
-            if (!map.containsKey(temp1))
-                map.put(temp1, getMas()[i]);
+            map.putIfAbsent(temp1, i);
         }
 
         return new HashSet<>(map.values());
